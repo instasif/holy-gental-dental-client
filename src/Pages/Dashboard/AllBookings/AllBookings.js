@@ -9,8 +9,12 @@ const AllBookings = () => {
   const closeModal = () => {
     setAllBooking(null);
   };
-  const url = "http://localhost:5000/allBookings";
-  const { data: allBookings, isLoading, refetch } = useQuery({
+  const url = "https://holy-gental-dental-server.vercel.app/allBookings";
+  const {
+    data: allBookings,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["allBookings"],
     queryFn: async () => {
       const res = await fetch(url, {
@@ -25,12 +29,15 @@ const AllBookings = () => {
 
   const handleDeleteAppoinment = (appoinment) => {
     console.log(appoinment);
-    fetch(`http://localhost:5000/allBookings/${appoinment?._id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://holy-gental-dental-server.vercel.app/allBookings/${appoinment?._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {

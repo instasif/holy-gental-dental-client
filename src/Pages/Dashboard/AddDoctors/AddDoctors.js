@@ -15,14 +15,16 @@ const AddDoctors = () => {
   const { data: specialties = [] } = useQuery({
     queryKey: ["appoinmentSpecialty"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/appoinmentSpecialty");
+      const res = await fetch(
+        "https://holy-gental-dental-server.vercel.app/appoinmentSpecialty"
+      );
       const data = res.json();
       return data;
     },
   });
 
   const imgHostKey = process.env.REACT_APP_imgbbKey;
-  
+
   const handleDoctorsForm = (data) => {
     const image = data.img[0];
     const formData = new FormData();
@@ -42,7 +44,7 @@ const AddDoctors = () => {
         };
 
         //? save doctors info to the database
-        fetch("http://localhost:5000/doctors", {
+        fetch("https://holy-gental-dental-server.vercel.app/doctors", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -50,9 +52,9 @@ const AddDoctors = () => {
           },
           body: JSON.stringify(doctor),
         })
-        .then((res) => res.json())
+          .then((res) => res.json())
           .then((res) => {
-        console.log(res);
+            console.log(res);
             if (res.acknowledged) {
               toast.success(`Dr. ${data.name} added successfully!`);
               navigate("/dashboard/manageDoctors");

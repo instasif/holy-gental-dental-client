@@ -26,7 +26,7 @@ const BookingModal = ({ treatment, selectedDate, setTreatment, refetch }) => {
       treatment: name,
     };
 
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://holy-gental-dental-server.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

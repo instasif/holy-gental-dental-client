@@ -22,7 +22,7 @@ const AvailableAppoinments = ({ selectedDate }) => {
     queryKey: ["appoinmentOptions", date],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/appoinmentOptions?date=${date}`
+        `https://holy-gental-dental-server.vercel.app/appoinmentOptions?date=${date}`
       );
       const data = await res.json();
       return data;

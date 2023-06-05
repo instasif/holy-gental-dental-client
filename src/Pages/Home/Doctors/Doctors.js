@@ -6,7 +6,9 @@ const Doctors = () => {
   const { data: doctors = [] } = useQuery({
     queryKey: "allDoctors",
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/allDoctors");
+      const res = await fetch(
+        "https://holy-gental-dental-server.vercel.app/allDoctors"
+      );
       const data = await res.json();
       return data;
     },
